@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="slider-component">
+      <div v-show="errorI !== undefined && errorI !== ''" class="text-mainPink text-pt12">Это поле необходимо заполнить</div>
       <div class="slidecontainer">
         <input
             ref="input"
@@ -44,17 +45,22 @@ export default {
     max: {
       type: Number,
       required: true
-    }
+    },
+    error: String
   },
   emits: ['input'],
   data() {
     return {
+      errorI: '',
       currentValue: this.value,
     };
   },
   methods: {
     onInput() {
       this.$emit('input', parseInt(this.currentValue));
+    },
+    setError: function(error) {
+      this.errorI = error
     }
   },
   created() {
