@@ -143,13 +143,22 @@
           </div>
         </div>
         <div class="bg-white">
-          <button @click="sendForm" class="font-thin h-28 text-white text-pt20 w-full"
+          <button @click="sendForm" class="font-thin h-28 text-white -pt-4 text-pt20 w-full"
                   :class="[
                 buttonState === 'full' && 'shadow-mainBlueButton bg-mainBlue',
                 buttonState === 'empty' && 'shadow-mainGrayButton bg-mainGray',
                 buttonState === 'correct' && 'shadow-mainGreenButton bg-mainGreen',
                 ]"
-          >{{buttonState !== 'full' ? 'ОТПРАВИТЬ' : 'ОТПРАВЛЕНО'}}
+          >
+            <div class="relative left-6/10 top-1/4" v-if="buttonState === 'correct'">
+              <svg xmlns="http://www.w3.org/2000/svg" width="38.713" height="26.757" viewBox="0 0 38.713 26.757">
+                <path id="Path_1730" data-name="Path 1730" d="M1020.475,1262.209l12.664,12.664,24.635-24.635" transform="translate(-1019.768 -1249.53)" fill="none" stroke="#fff" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="mb-8" :class="{'mt-8': buttonState !=='correct'}">
+              {{buttonState !== 'correct' ? 'ОТПРАВИТЬ' : 'ОТПРАВЛЕНО'}}
+            </div>
+
           </button>
         </div>
         <div class="text-pt16 text-center mt-16 text-lightText">LABORATORY OF MULTI-AGENT SYSTEMS</div>
@@ -356,7 +365,17 @@ export default {
               )
               .then((res) => {
                 console.log(res)
+                if(res.status === 200) {
+                  if (this.buttonState === 'full') {
+                    this.blockState_1 = 'correct'
+                    this.blockState_2 = 'correct'
+                    this.blockState_3 = 'correct'
+                    this.blockState_4 = 'correct'
+                    this.blockState_5 = 'correct'
 
+                    this.buttonState = 'correct'
+                  }
+                }
               })
         }
       }
