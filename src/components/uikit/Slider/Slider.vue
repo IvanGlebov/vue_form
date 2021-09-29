@@ -10,6 +10,7 @@
             :min="min"
             :max="max"
             class="slider"
+            :style="{background: `linear-gradient(to right, #0CE2F4 0%, #0CE2F4 ${currentValue}%, black ${currentValue}%, black 100%)`}"
             @input="$emit('input', currentValue)"
         >
         <span v-bind:style="{
@@ -80,8 +81,6 @@ export default {
   width: 100%;
   height: 2px;
   border-radius: 2px;
-  /*background: #c2c2c2;*/
-  @apply bg-black;
   outline: none;
   opacity: 0.7;
   -webkit-transition: .2s;

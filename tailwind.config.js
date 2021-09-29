@@ -3,18 +3,27 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {
+      inset: {
+        '7/10': '70%',
+        '72/100': '72%',
+        '74/100': '74%'
+      },
       colors: {
         mainBlue: '#0CE2F4',
         mainPink: '#F40C53',
         mainGray: '#707070',
         lightGray: '#C3C3C3',
         mainLight: '#F2F2F2',
-        mainGreen: '#86C621'
+        mainGreen: '#86C621',
+        lightText: '#C7C7C7'
       },
       fontSize: {
         pt20: '1.67rem',
         pt16: '1.33rem',
         pt12: '1.0rem'
+      },
+      fontFamily: {
+        robotoSerif: ['Roboto', 'sans-serif']
       },
       zIndex: {
         '-10': '-10'
