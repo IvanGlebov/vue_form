@@ -337,8 +337,8 @@ export default {
           this.buttonState = 'correct'
         }
 
-        let val = false
-        if (val) {
+        // let val = false
+        // if (val) {
           axios
               .post(
                   'https://script.google.com/macros/s/AKfycbwT5P8_PkFBy_vM5bhb_b-GsxQv7__15YilhVuzruB-JcFa1XXAp3kFS5_Y8a2lqg3K5A/exec',
@@ -377,7 +377,7 @@ export default {
                   }
                 }
               })
-        }
+        // }
       }
     }
   },
