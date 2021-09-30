@@ -314,17 +314,6 @@ export default {
         } else
           refs.ifReadyForFullInput.setError('')
 
-        if (this.buttonState === 'full'
-        ) {
-          this.blockState_1 = 'correct'
-          this.blockState_2 = 'correct'
-          this.blockState_3 = 'correct'
-          this.blockState_4 = 'correct'
-          this.blockState_5 = 'correct'
-
-          this.buttonState = 'correct'
-        }
-
         axios
             .post(
                 'https://script.google.com/macros/s/AKfycbwT5P8_PkFBy_vM5bhb_b-GsxQv7__15YilhVuzruB-JcFa1XXAp3kFS5_Y8a2lqg3K5A/exec',
@@ -350,7 +339,7 @@ export default {
             )
             .then((res) => {
               console.log(res)
-              if(res.result === "success") {
+              if(res.data.result === "success") {
                 this.blockState_1 = 'correct'
                 this.blockState_2 = 'correct'
                 this.blockState_3 = 'correct'
