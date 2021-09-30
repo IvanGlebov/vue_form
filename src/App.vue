@@ -262,18 +262,6 @@ export default {
           this.blockState_5 === 'full')
         this.buttonState = 'full'
     },
-    // showState: function () {
-    //   console.log(`name    : ${this.name}`)
-    //   console.log(`tg      : ${this.tg}`)
-    //   console.log(`repo    : ${this.repoLink}`)
-    //   console.log(`dontWant: ${this.dontWantToDo}`)
-    //   console.log(`designPo: ${this.designPower}`)
-    //   console.log(`designCo: ${this.designComment}`)
-    //   console.log(`animatWi: ${this.animationsWill}`)
-    //   console.log(`animatCo: ${this.animationsComment}`)
-    //   console.log(`routines: ${this.routines}`)
-    //   console.log(`ifReadyF: ${this.ifReadyForFull}`)
-    // },
     sendForm: function () {
       if (this.buttonState !== 'correct') {
         let refs = this.$refs
@@ -337,47 +325,43 @@ export default {
           this.buttonState = 'correct'
         }
 
-        // let val = false
-        // if (val) {
-          axios
-              .post(
-                  'https://script.google.com/macros/s/AKfycbwT5P8_PkFBy_vM5bhb_b-GsxQv7__15YilhVuzruB-JcFa1XXAp3kFS5_Y8a2lqg3K5A/exec',
-                  {
-                    name: this.name,
-                    telegram: this.telegram,
-                    repo: this.repo,
-                    sentFrom: window.location.href,
-                    timestamp: Date.now(),
-                    qNotWantedActivity: this.dontWantToDo,
-                    qDesign: this.designPower,
-                    qDesignComment: this.designComment,
-                    qCssAnimation: this.animationsWill,
-                    qCssAnimationComment: this.animationsComment,
-                    qChores: this.routines,
-                    qFreelance: this.ifReadyForFull
+        axios
+            .post(
+                'https://script.google.com/macros/s/AKfycbwT5P8_PkFBy_vM5bhb_b-GsxQv7__15YilhVuzruB-JcFa1XXAp3kFS5_Y8a2lqg3K5A/exec',
+                {
+                  name: this.name,
+                  telegram: this.telegram,
+                  repo: this.repo,
+                  sentFrom: window.location.href,
+                  timestamp: Date.now(),
+                  qNotWantedActivity: this.dontWantToDo,
+                  qDesign: this.designPower,
+                  qDesignComment: this.designComment,
+                  qCssAnimation: this.animationsWill,
+                  qCssAnimationComment: this.animationsComment,
+                  qChores: this.routines,
+                  qFreelance: this.ifReadyForFull
+                },
+                {
+                  headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
                   },
-                  {
-                    headers: {
-                      'Content-Type': 'application/json',
-                      'Access-Control-Allow-Origin': '*',
-                    },
-                  }
-              )
-              .then((res) => {
-                console.log(res)
-                if(res.status === 200) {
-                  if (this.buttonState === 'full') {
-                    this.blockState_1 = 'correct'
-                    this.blockState_2 = 'correct'
-                    this.blockState_3 = 'correct'
-                    this.blockState_4 = 'correct'
-                    this.blockState_5 = 'correct'
-
-                    this.buttonState = 'correct'
-                  }
                 }
-              })
-        // }
+            )
+            .then((res) => {
+              console.log(res)
+              if(res.result === "success") {
+                this.blockState_1 = 'correct'
+                this.blockState_2 = 'correct'
+                this.blockState_3 = 'correct'
+                this.blockState_4 = 'correct'
+                this.blockState_5 = 'correct'
+
+                this.buttonState = 'correct'
+              } else {
+                alert('Something has gone wrong')
+              }
+            }).catch(e => alert(e))
       }
     }
   },
